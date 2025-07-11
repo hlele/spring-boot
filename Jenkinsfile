@@ -12,7 +12,7 @@ pipeline {
         // SonarQube server details (configured in Jenkins global tools or credentials)
         SONAR_SCANNER_HOME = tool 'SonarQube Scanner' // Name of your SonarQube Scanner installation in Jenkins
         SONAR_QUBE_URL = 'http://localhost:9000' // Replace with your SonarQube server URL
-        SONAR_QUBE_CREDENTIALS_ID = 'Jenkins-SQ-Analysis' // ID of your SonarQube token credential in Jenkins
+        SONAR_QUBE_CREDENTIALS_ID = 'sqa_73d475d88c0b31d95830cefeb15b547c03883ec4' // ID of your SonarQube token credential in Jenkins
         // SonarQube project key - unique identifier for your project in SonarQube
         // It's good practice to derive this from repo name or define explicitly.
         //SONAR_PROJECT_KEY = "${env.JOB_NAME.replace('/', '_').toLowerCase()}" // Example: Uses Jenkins job name, converted to lowercase
