@@ -1,5 +1,7 @@
 pipeline {
-    agent {any}
+    agent {
+        any
+    }
 
     tools {
         // Specify the JDK and Gradle versions configured in Global Tool Configuration
