@@ -61,7 +61,7 @@ pipeline {
                                 -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} \
                                 -Dsonar.sources=. \
                                 -Dsonar.host.url=${env.SONAR_QUBE_URL} \
-                                -Dsonar.token=${env.SONAR_QUBE_CREDENTIALS_ID}
+                                -Dsonar.token=${env.SONAR_QUBE_CREDENTIALS_ID} \
                                 -Dsonar.exclusions=**/*.java"
                         // Name of your SonarQube server config in Jenkins
                         // Run SonarQube analysis using the Gradle SonarQube plugin
