@@ -61,7 +61,7 @@ pipeline {
                     // This section uses the SonarQube Scanner for Jenkins plugin.
                     // The 'withSonarQubeEnv' block injects SonarQube environment variables.
                     // The name 'MySonarQubeServer' must match the name configured in Jenkins Global System Config.
-                    withSonarQubeEnv('MySonarQubeServer') { // Name of your SonarQube server config in Jenkins
+                    withSonarQubeEnv('Sonarqube-local-docker') { // Name of your SonarQube server config in Jenkins
                         // Run SonarQube analysis using the Gradle SonarQube plugin
                         // The 'sonar' task is typically provided by applying 'org.sonarqube' plugin in build.gradle.
                         sh "${GRADLE_WRAPPER} sonarqube \\
