@@ -64,7 +64,7 @@ pipeline {
                     withSonarQubeEnv('Sonarqube-local-docker') { // Name of your SonarQube server config in Jenkins
                         // Run SonarQube analysis using the Gradle SonarQube plugin
                         // The 'sonar' task is typically provided by applying 'org.sonarqube' plugin in build.gradle.
-                        sh "${GRADLE_WRAPPER} sonarqube \\
+                        sh """${GRADLE_WRAPPER} sonarqube \\
                             -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} \\
                             -Dsonar.projectName=${env.SONAR_PROJECT_NAME} \\
                             -Dsonar.host.url=${env.SONAR_QUBE_URL} \\
@@ -74,7 +74,7 @@ pipeline {
                             -Dsonar.tests=src/test/java,src/test/kotlin \\
                             -Dsonar.java.binaries=build/classes \\
                             -Dsonar.junit.reportPaths=build/test-results/test \\
-                            -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml"
+                            -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml"""
                         // Important notes for properties:
                         // - Dsonar.host.url and -Dsonar.login are automatically provided by withSonarQubeEnv,
                         //   but explicitly passing them here can sometimes resolve issues if env vars aren't propagated.
