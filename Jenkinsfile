@@ -59,6 +59,7 @@ pipeline {
                     withSonarQubeEnv('Sonarqube-local-docker') { // Name of your SonarQube server config in Jenkins
                         // Run SonarQube analysis using the Gradle SonarQube plugin
                         // The 'sonar' task is typically provided by applying 'org.sonarqube' plugin in build.gradle.
+                        sh """${GRADLE_WRAPPER} clean"""
                         sh """${GRADLE_WRAPPER} sonarqube \\
                             -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} \\
                             -Dsonar.projectName=${env.SONAR_PROJECT_NAME} \\
