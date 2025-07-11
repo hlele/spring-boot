@@ -56,21 +56,27 @@ pipeline {
                     // This section uses the SonarQube Scanner for Jenkins plugin.
                     // The 'withSonarQubeEnv' block injects SonarQube environment variables.
                     // The name 'MySonarQubeServer' must match the name configured in Jenkins Global System Config.
-                    withSonarQubeEnv('Sonarqube-local-docker') { // Name of your SonarQube server config in Jenkins
+                    withSonarQubeEnv('Sonarqube-local-docker') { 
+                        sh "${env.SONAR_SCANNER_HOME}/sonar-scanner-7.1.0.4889-macosx-aarch64/bin/sonar-scanner \
+                                -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} \
+                                -Dsonar.sources=. \
+                                -Dsonar.host.url=${env.SONAR_QUBE_URL} \
+                                -Dsonar.token=${env.SONAR_QUBE_CREDENTIALS_ID}"
+                        // Name of your SonarQube server config in Jenkins
                         // Run SonarQube analysis using the Gradle SonarQube plugin
                         // The 'sonar' task is typically provided by applying 'org.sonarqube' plugin in build.gradle.
-                        sh """${GRADLE_WRAPPER} clean"""
-                        sh """${GRADLE_WRAPPER} sonarqube \\
-                            -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} \\
-                            -Dsonar.projectName=${env.SONAR_PROJECT_NAME} \\
-                            -Dsonar.host.url=${env.SONAR_QUBE_URL} \\
-                            -Dsonar.login=${env.SONAR_QUBE_CREDENTIALS_ID} \\
-                            -Dsonar.sourceEncoding=UTF-8 \\
-                            -Dsonar.sources=src/main/java,src/main/kotlin \\
-                            -Dsonar.tests=src/test/java,src/test/kotlin \\
-                            -Dsonar.java.binaries=build/classes \\
-                            -Dsonar.junit.reportPaths=build/test-results/test \\
-                            -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml"""
+                        //sh """${GRADLE_WRAPPER} clean"""
+                        //sh """${GRADLE_WRAPPER} sonarqube \\
+                          //  -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} \\
+                            //-Dsonar.projectName=${env.SONAR_PROJECT_NAME} \\
+                            //-Dsonar.host.url=${env.SONAR_QUBE_URL} \\
+                            //-Dsonar.login=${env.SONAR_QUBE_CREDENTIALS_ID} \\
+                            //-Dsonar.sourceEncoding=UTF-8 \\
+                            //-Dsonar.sources=src/main/java,src/main/kotlin \\
+                            //-Dsonar.tests=src/test/java,src/test/kotlin \\
+                            //-Dsonar.java.binaries=build/classes \\
+                            //-Dsonar.junit.reportPaths=build/test-results/test \\
+                            //-Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml"""
                         // Important notes for properties:
                         // - Dsonar.host.url and -Dsonar.login are automatically provided by withSonarQubeEnv,
                         //   but explicitly passing them here can sometimes resolve issues if env vars aren't propagated.
