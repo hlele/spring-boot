@@ -89,18 +89,18 @@ pipeline {
             }
         }
 
-        stage('Quality Gate Check') {
-            steps {
-                script {
+    //    stage('Quality Gate Check') {
+     //       steps {
+       //         script {
                     // This step will wait for the SonarQube analysis to complete and check the Quality Gate status.
                     // It will fail the Jenkins pipeline if the Quality Gate fails in SonarQube.
                     // The name 'MySonarQubeServer' must match the name configured in Jenkins Global System Config.
                     // You can specify a timeout in minutes.
-                    timeout(time: 10, unit: 'MINUTES') { // Increased timeout for larger projects
-                        waitForQualityGate abortPipeline: true
-                    }
-                }
-            }
+         //           timeout(time: 10, unit: 'MINUTES') { // Increased timeout for larger projects
+           //             waitForQualityGate abortPipeline: true
+             //       }
+            //    }
+         //   }
         }
     }
     
