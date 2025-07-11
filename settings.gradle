@@ -37,7 +37,7 @@ pluginManagement {
 plugins {
 	id "io.spring.develocity.conventions" version "0.0.22"
 	id "org.springframework.boot.cycle-detection"
-	id 'io.spring.javaformat', version: '0.0.47'
+	id "io.spring.javaformat" version: '0.0.47'
 }
 
 rootProject.name="spring-boot-build"
