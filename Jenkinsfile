@@ -65,8 +65,8 @@ pipeline {
                         // Run SonarQube analysis using the Gradle SonarQube plugin
                         // The 'sonar' task is typically provided by applying 'org.sonarqube' plugin in build.gradle.
                         sh "${GRADLE_WRAPPER} sonarqube \\
-                            -Dsonar.projectKey=${SONAR_PROJECT_KEY} \\
-                            -Dsonar.projectName=${SONAR_PROJECT_NAME} \\
+                            -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} \\
+                            -Dsonar.projectName=${env.SONAR_PROJECT_NAME} \\
                             -Dsonar.host.url=${env.SONAR_QUBE_URL} \\
                             -Dsonar.login=${env.SONAR_QUBE_CREDENTIALS_ID} \\
                             -Dsonar.sourceEncoding=UTF-8 \\
