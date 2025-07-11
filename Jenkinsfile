@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        any
-    }
+    agent {any}
 
     tools {
         // Specify the JDK and Gradle versions configured in Global Tool Configuration
@@ -46,9 +44,9 @@ pipeline {
                 // Clean build directory, build the project, and run tests
                 // -x test: Exclude tests from the build if you want to run them separately or rely on SonarQube to analyze test results later.
                 // It's usually better to run tests as part of your build process.
-                sh "${GRADLE_WRAPPER} clean build"
+                //sh """${GRADLE_WRAPPER} clean build"""
                 // If you want to skip tests during the build, but ensure coverage is still generated:
-                // sh "${GRADLE_WRAPPER} clean build -x test"
+                // sh """${GRADLE_WRAPPER} clean build -x test"""
   //          }
    //     }
 
