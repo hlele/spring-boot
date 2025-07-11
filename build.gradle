@@ -17,6 +17,47 @@
 plugins {
 	id "base"
 	id "org.jetbrains.kotlin.jvm" apply false // https://youtrack.jetbrains.com/issue/KT-30276
+	id 'org.sonarqube' version '6.x.x' // SonarQube plugin for Gradle
+    	id 'jacoco' // JaCoCo plugin for code coverage
+}
+jacoco {
+    toolVersion = "0.8.13" // Or the latest stable version
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport // Ensure JaCoCo report is generated after tests
+}
+
+jacocoTestReport {
+    dependsOn test // Ensure tests run before report generation
+    reports {
+        xml.required = true // This is crucial for SonarQube
+        html.required = true
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "${project.name}" // Use project name from Gradle
+        property "sonar.projectName", "${project.name}"
+        // The following are often passed directly in Jenkinsfile, but can be set here too
+        // property "sonar.host.url", "http://your-sonarqube-ip:9000"
+        // property "sonar.login", "your_sonar_token"
+
+        // Point SonarQube to the Jacoco XML report
+        property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+
+        // Adjust source/binary paths if different from default Spring Boot structure
+        property "sonar.java.binaries", "${buildDir}/classes/java/main"
+        property "sonar.sources", "src/main/java"
+        property "sonar.tests", "src/test/java"
+        property "sonar.junit.reportPaths", "${buildDir}/test-results/test"
+        // If you have Kotlin, adjust paths accordingly:
+        // property "sonar.java.binaries", "${buildDir}/classes/java/main,${buildDir}/classes/kotlin/main"
+        // property "sonar.sources", "src/main/java,src/main/kotlin"
+        // property "sonar.tests", "src/test/java,src/test/kotlin"
+    }
 }
 
 description = "Spring Boot Build"
