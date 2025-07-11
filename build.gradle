@@ -19,6 +19,7 @@ plugins {
 	id "org.jetbrains.kotlin.jvm" apply false // https://youtrack.jetbrains.com/issue/KT-30276
 	id 'org.sonarqube' version '6.x.x' // SonarQube plugin for Gradle
     	id 'jacoco' // JaCoCo plugin for code coverage
+	id 'io.spring.javaformat', version: '0.0.47'
 }
 jacoco {
     toolVersion = "0.8.13" // Or the latest stable version
