@@ -1,8 +1,5 @@
 pipeline {
     agent {
-        // You can specify a specific agent label if your agents have specific tools/OS
-        // For example: label 'my-java-gradle-agent'
-        // Otherwise, use 'any'
         any
     }
 
